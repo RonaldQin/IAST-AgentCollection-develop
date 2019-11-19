@@ -1,0 +1,44 @@
+[
+	{
+		"uuid" : "02D6AF75-C449-481F-B904-108B1CA3E5B8",
+		"className" : "java.lang.StringBuilder",
+		"instrumentations" : [
+			{
+				"methodName" : "append",
+				"params" : ["java.lang.String"],
+				"insertPosition" : "after",
+				"insertLogic" : "insert_transmitTaintFromParamsToThis",
+				"methodType" : 1
+			},
+			{
+				"methodName" : "toString",
+				"params" : [],
+				"insertPosition" : "after",
+				"insertLogic" : "",
+				"methodType" : 1
+			},
+			{
+				"methodName" : "StringBuilder",
+				"params" : ["java.lang.String"],
+				"insertPosition" : "after",
+				"insertLogic" : "insert_transmitTaintFromParamsToThis",
+				"methodType" : 0
+			}
+		],
+		"dealClass" : "com.engine.instrument.StringBuilderTaintRule"
+	},
+	{
+		"uuid" : "46B29696-4407-49A5-AF8B-D2999BC3D6D8",
+		"className" : "org.apache.catalina.connector.CoyoteAdapter",
+		"instrumentations" : [
+			{
+				"methodName" : "service",
+				"params" : ["org.apache.coyote.Request", "org.apache.coyote.Response"],
+				"insertPosition" : "before",
+				"insertLogic" : "insert_transmitTaintFromParamsToThis",
+				"methodType" : 1
+			}
+		],
+		"dealClass" : "com.engine.instrument.StringBuilderTaintRule"
+	}
+]
