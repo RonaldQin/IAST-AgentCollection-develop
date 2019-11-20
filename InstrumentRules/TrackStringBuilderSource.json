@@ -1,0 +1,23 @@
+[
+	{
+		"uuid" : "12074610-18E9-4EA3-8F37-F1AA605FBA53",
+		"className" : "java.lang.StringBuilder",
+		"dealClass" : "com.engine.instrument.TrackStringBuilderSourceRule",
+		"instrumentations" : [
+			{
+				"methodName" : "append",
+				"params" : ["java.lang.String"],
+				"insertPosition" : "after",
+				"insertLogic" : "insert_TrackSourceInAppend",
+				"methodType" : 1
+			},
+			{
+				"methodName" : "append",
+				"params" : ["java.lang.String"],
+				"insertPosition" : "before",
+				"insertLogic" : "insert_StoreThisValue",
+				"methodType" : 1
+			}
+		]
+	}
+]

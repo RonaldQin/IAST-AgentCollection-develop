@@ -12,14 +12,15 @@ import javassist.CtClass;
 import javassist.LoaderClassPath;
 import javassist.NotFoundException;
 
+/* 所有的插桩规则对象都应该是单例模式的。 */
 public abstract class AbstractInstrumentRule {
 	protected ClassPool pool;
-	protected CtClass dealClass;
-	protected byte[] classfileBuffer;
+	protected CtClass dealClass; // 规则当前插桩类
+	protected byte[] classfileBuffer; // 保存修改后的类所对应的字节数组
 
-	protected CtBehavior dealMethod;
-	protected String[] params;
-	protected String insertPosition;
+	protected CtBehavior dealMethod; // 当前插桩方法
+	protected String[] params; // 插桩方法的参数列表
+	protected String insertPosition; // 插桩位置
 
 	public AbstractInstrumentRule(ClassLoader loader, byte[] classfileBuffer, String className) {
 		pool = new ClassPool();
@@ -34,8 +35,7 @@ public abstract class AbstractInstrumentRule {
 		}
 	}
 
-	// 所有的插桩规则对象都应该是单例模式的。
-
+	/* 设置插桩类 */
 	public void changeDealClass(String className) {
 		try {
 			dealClass = pool.get(className);
@@ -44,6 +44,7 @@ public abstract class AbstractInstrumentRule {
 		}
 	}
 
+	/* 插桩插桩方法 */
 	public void changeDealMethod(String methodName, String[] params) {
 		if (dealClass == null) {
 			System.out.println("Please set dealClass first!");
@@ -64,6 +65,7 @@ public abstract class AbstractInstrumentRule {
 		}
 	}
 
+	/* 设置插桩方法为构造方法 */
 	public void changeDealMethodToConstructor(String[] params) {
 		if (dealClass == null) {
 			System.out.println("Please set dealClass first!");
@@ -84,20 +86,25 @@ public abstract class AbstractInstrumentRule {
 		}
 	}
 
+	/* 设置插桩位置 */
 	public void setInsertPosition(String insertPosition) {
 		this.insertPosition = insertPosition;
 	}
 
-	public void callInsertion(String insertLogic) {
+	/* 执行插桩逻辑 */
+	public void callInsertion(String insertLogic, boolean transform) { // false - 返回插桩代码；true - 不返回插桩代码。
 		String code = null;
 		try {
 			Method m = this.getClass().getMethod(insertLogic, null);
 			m.setAccessible(true);
-			code = (String) m.invoke(this, null);
+			if (!transform)
+				code = (String) m.invoke(this, null);
+			else
+				m.invoke(this, null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		finishInsert(code);
+		finishInsert(code); // 插入代码
 	}
 
 	public void finishInsert(String code) {
@@ -115,9 +122,11 @@ public abstract class AbstractInstrumentRule {
 		}
 	}
 
+	/* 返回修改后的类的字节数组 */
 	public byte[] completeTransformDealClass() {
 		try {
 			classfileBuffer = dealClass.toBytecode();
+			dealClass.defrost(); // 解冻
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -126,11 +135,4 @@ public abstract class AbstractInstrumentRule {
 		return classfileBuffer;
 	}
 
-	public String insert_transmitTaintFromParamsToThis() {
-		pool.importPackage("com.engine.instrument.StringBuilderTaintRule");
-		StringBuffer code_buffer = new StringBuffer("");
-		System.out.println("exec insert logic...");
-		code_buffer.append("System.out.println(\"Inserting ...\");");
-		return code_buffer.toString();
-	}
 }

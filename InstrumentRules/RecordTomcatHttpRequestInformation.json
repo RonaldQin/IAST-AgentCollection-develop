@@ -1,0 +1,41 @@
+[
+	{
+		"uuid" : "8480BC9D-9CD0-40F6-9CF4-C1319A6CBD48",
+		"className" : "org.apache.catalina.connector.CoyoteAdapter",
+		"dealClass" : "com.engine.instrument.RecordTomcatHttpRequestInformationRule",
+		"instrumentations" : [
+			{
+				"methodName" : "postParseRequest",
+				"params" : [
+					"org.apache.coyote.Request", 
+					"org.apache.catalina.connector.Request", 
+					"org.apache.coyote.Response", 
+					"org.apache.catalina.connector.Response"],
+				"insertPosition" : "after",
+				"insertLogic" : "insert_InitTomcatHttpRequestInfo",
+				"methodType" : 1
+			},
+			{
+				"methodName" : "service",
+				"params" : ["org.apache.coyote.Request", "org.apache.coyote.Response"],
+				"insertPosition" : "after",
+				"insertLogic" : "insert_DumpHttpRequestInfo",
+				"methodType" : 1
+			}
+		]
+	},
+	{
+		"uuid" : "1CE8E994-4161-47F7-A9F6-F9AC1CC0A0F3",
+		"className" : "org.apache.catalina.connector.Request",
+		"dealClass" : "com.engine.instrument.RecordTomcatHttpRequestInformationRule",
+		"instrumentations" : [
+			{
+				"methodName" : "parseParameters",
+				"params" : [],
+				"insertPosition" : "after",
+				"insertLogic" : "insert_GetMultipartHttpPostParameters",
+				"methodType" : 1
+			}
+		]
+	}
+]

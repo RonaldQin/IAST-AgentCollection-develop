@@ -66,12 +66,15 @@ public class ClassesTransformer implements ClassFileTransformer {
 					
 					if (methodType == com.engine.bean.Instrumentation.METHOD_TYPE_CONSTRUCTOR) { // 插桩构造方法
 						rule_instance.changeDealMethodToConstructor(params);
+						rule_instance.callInsertion(insertLogic, false);
 					} else if (methodType == com.engine.bean.Instrumentation.METHOD_TYPE_NORMAL) { // 插桩普通方法
 						rule_instance.changeDealMethod(methodName, params);
+						rule_instance.callInsertion(insertLogic, false);
 					} else if (methodType == com.engine.bean.Instrumentation.METHOD_TYPE_STATIC_BLOCK) { // 插桩添加静态代码块
 
+					} else if (methodType == com.engine.bean.Instrumentation.METHOD_TYPE_MODIFY_CLASS) {
+						rule_instance.callInsertion(insertLogic, true);
 					}
-					rule_instance.callInsertion(insertLogic);
 				}
 				classfileBuffer = rule_instance.completeTransformDealClass();
 			}

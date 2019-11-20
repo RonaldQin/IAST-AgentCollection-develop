@@ -5,9 +5,10 @@ import java.util.Arrays;
 public class Instrumentation {
 	public static final String POSITION_BEFORE = "before";
 	public static final String POSITION_AFTER = "after";
-	public static final int METHOD_TYPE_CONSTRUCTOR = 0;
-	public static final int METHOD_TYPE_NORMAL = 1;
-	public static final int METHOD_TYPE_STATIC_BLOCK = 2;
+	public static final int METHOD_TYPE_CONSTRUCTOR = 0; // 构造方法
+	public static final int METHOD_TYPE_NORMAL = 1; // 普通方法
+	public static final int METHOD_TYPE_STATIC_BLOCK = 2; // 静态代码块
+	public static final int METHOD_TYPE_MODIFY_CLASS = 3; // 修改类
 
 	private String methodName;
 	private String[] params;

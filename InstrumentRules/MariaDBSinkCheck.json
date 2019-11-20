@@ -1,0 +1,16 @@
+[
+	{
+		"uuid" : "EAFF6DAC-C18C-4CF2-9C2C-692128BF56BA",
+		"className" : "org.mariadb.jdbc.MariaDbStatement",
+		"dealClass" : "com.engine.instrument.MariaDBSinkCheckRule",
+		"instrumentations" : [
+			{
+				"methodName" : "executeQuery",
+				"params" : ["java.lang.String"],
+				"insertPosition" : "before",
+				"insertLogic" : "insert_CheckTriggerSink",
+				"methodType" : 1
+			}
+		]
+	}
+]

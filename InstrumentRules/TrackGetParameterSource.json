@@ -1,0 +1,16 @@
+[
+	{
+		"uuid" : "AE932E57-A0E4-4395-941B-480ED1E5C791",
+		"className" : "org.apache.catalina.connector.RequestFacade",
+		"dealClass" : "com.engine.instrument.TrackParameterSourceRule",
+		"instrumentations" : [
+			{
+				"methodName" : "getParameter",
+				"params" : ["java.lang.String"],
+				"insertPosition" : "after",
+				"insertLogic" : "insert_LabelSource",
+				"methodType" : 1
+			}
+		]
+	}
+]

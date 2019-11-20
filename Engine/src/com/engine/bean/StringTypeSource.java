@@ -1,6 +1,7 @@
 package com.engine.bean;
 
 import java.util.Hashtable;
+import java.util.Map;
 import java.util.UUID;
 
 public class StringTypeSource {
@@ -10,7 +11,17 @@ public class StringTypeSource {
 	private String uuid;
 	private String value;
 
+	public static boolean isStringTypeSource(String val) {
+		for (Map.Entry<String, StringTypeSource> entry : table.entrySet()) {
+			if (entry.getValue().getValue().equals(val)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public StringTypeSource(String value) {
+//		System.out.println("New Source: " + value);
 		this.value = value;
 		this.uuid = UUID.randomUUID().toString().toLowerCase();
 		table.put(uuid, this);
