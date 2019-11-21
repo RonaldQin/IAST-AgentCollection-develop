@@ -9,7 +9,7 @@ import java.security.ProtectionDomain;
 import java.util.List;
 
 import com.engine.bean.InstrumentRule;
-import com.engine.instrument.AbstractInstrumentRule;
+import com.engine.rule.AbstractInstrumentRule;
 
 public class ClassesTransformer implements ClassFileTransformer {
 

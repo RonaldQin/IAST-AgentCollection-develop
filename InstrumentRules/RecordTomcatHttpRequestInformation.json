@@ -2,7 +2,7 @@
 	{
 		"uuid" : "8480BC9D-9CD0-40F6-9CF4-C1319A6CBD48",
 		"className" : "org.apache.catalina.connector.CoyoteAdapter",
-		"dealClass" : "com.engine.instrument.RecordTomcatHttpRequestInformationRule",
+		"dealClass" : "com.engine.rule.RecordTomcatHttpRequestInformationRule",
 		"instrumentations" : [
 			{
 				"methodName" : "postParseRequest",
@@ -27,7 +27,7 @@
 	{
 		"uuid" : "1CE8E994-4161-47F7-A9F6-F9AC1CC0A0F3",
 		"className" : "org.apache.catalina.connector.Request",
-		"dealClass" : "com.engine.instrument.RecordTomcatHttpRequestInformationRule",
+		"dealClass" : "com.engine.rule.RecordTomcatHttpRequestInformationRule",
 		"instrumentations" : [
 			{
 				"methodName" : "parseParameters",

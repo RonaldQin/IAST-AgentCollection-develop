@@ -2,7 +2,7 @@
 	{
 		"uuid" : "AE932E57-A0E4-4395-941B-480ED1E5C791",
 		"className" : "org.apache.catalina.connector.RequestFacade",
-		"dealClass" : "com.engine.instrument.TrackParameterSourceRule",
+		"dealClass" : "com.engine.rule.TrackParameterSourceRule",
 		"instrumentations" : [
 			{
 				"methodName" : "getParameter",
