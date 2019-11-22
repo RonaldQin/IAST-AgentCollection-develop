@@ -72,7 +72,7 @@ public class ClassesTransformer implements ClassFileTransformer {
 						rule_instance.callInsertion(insertLogic, false);
 					} else if (methodType == com.engine.bean.Instrumentation.METHOD_TYPE_STATIC_BLOCK) { // 插桩添加静态代码块
 
-					} else if (methodType == com.engine.bean.Instrumentation.METHOD_TYPE_MODIFY_CLASS) {
+					} else if (methodType == com.engine.bean.Instrumentation.METHOD_TYPE_MODIFY_CLASS) { // 修改类
 						rule_instance.callInsertion(insertLogic, true);
 					}
 				}

@@ -24,14 +24,18 @@ public class MariaDBSinkCheckRule extends AbstractInstrumentRule {
 	/* 插桩检测Source是否出发Sink (executeQuery) */
 	public String insert_CheckTriggerSink() {
 		pool.importPackage(Source.class.getCanonicalName());
+		pool.importPackage(StringBuilderTaintRule.class.getCanonicalName());
 		StringBuffer code_buffer = new StringBuffer("");
 		try {
+			code_buffer.append("if (StringBuilderTaintRule.isSwitchOn()) { StringBuilderTaintRule.switchOff();");
 			dealMethod.addLocalVariable("_$taintedKey", pool.get(String.class.getCanonicalName()));
 			code_buffer.append("_$taintedKey = Source.isTainted($1);");
 			code_buffer.append("if (_$taintedKey != null) {");
 			code_buffer.append(
 					"System.out.println(\"Trigger Sink: org.mariadb.jdbc.MariaDbStatement.executeQuery with Source: \" + $1);");
+			code_buffer.append("Source.dumpStackTrace(_$taintedKey);");
 			code_buffer.append("}");
+			code_buffer.append("StringBuilderTaintRule.switchOn(); }");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

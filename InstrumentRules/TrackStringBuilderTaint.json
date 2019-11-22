@@ -17,6 +17,13 @@
 				"insertPosition" : "after",
 				"insertLogic" : "insert_AppendTransmitTaint",
 				"methodType" : 1
+			},
+			{
+				"methodName" : "toString",
+				"params" : [],
+				"insertPosition" : "after",
+				"insertLogic" : "insert_ToStringTransmitTaint",
+				"methodType" : 1
 			}
 		]
 	}

@@ -17,4 +17,10 @@ public class Test {
 	public static void f(String s) {
 		System.out.println(s == "Source");
 	}
+
+	static volatile boolean flag = false;
+
+	public static synchronized void lf() {
+
+	}
 }
