@@ -1,6 +1,6 @@
 package com.engine.rule;
 
-import com.engine.bean.StringTypeSource;
+import com.engine.bean.Source;
 
 public class MariaDBSinkCheckRule extends AbstractInstrumentRule {
 	
@@ -23,16 +23,14 @@ public class MariaDBSinkCheckRule extends AbstractInstrumentRule {
 
 	/* 插桩检测Source是否出发Sink (executeQuery) */
 	public String insert_CheckTriggerSink() {
-		pool.importPackage(StringTypeSource.class.getCanonicalName());
+		pool.importPackage(Source.class.getCanonicalName());
 		StringBuffer code_buffer = new StringBuffer("");
 		try {
 			dealMethod.addLocalVariable("_$taintedKey", pool.get(String.class.getCanonicalName()));
-			dealMethod.addLocalVariable("_$pre", pool.get(String[].class.getCanonicalName()));
-			code_buffer.append("_$taintedKey = StringTypeSource.isStringTypeSource($1);");
+			code_buffer.append("_$taintedKey = Source.isTainted($1);");
 			code_buffer.append("if (_$taintedKey != null) {");
 			code_buffer.append(
 					"System.out.println(\"Trigger Sink: org.mariadb.jdbc.MariaDbStatement.executeQuery with Source: \" + $1);");
-			code_buffer.append("StringTypeSource.traversalTaintTransmitPath(_$taintedKey);");
 			code_buffer.append("}");
 		} catch (Exception e) {
 			e.printStackTrace();

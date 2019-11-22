@@ -7,9 +7,11 @@ public class Test {
 	public static HashMap<String, String> map = new HashMap<String, String>();
 
 	public static void main(String[] args) {
-		map.put("1", "Source");
-		String source = map.get("1");
-		f(source);
+
+		String s = "qin";
+
+		StringBuilder sb = new StringBuilder("qin");
+		System.out.println(sb.toString() == "qin");
 	}
 
 	public static void f(String s) {

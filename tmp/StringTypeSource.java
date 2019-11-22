@@ -39,7 +39,7 @@ public class StringTypeSource {
 
 	public static String isStringTypeSource(String val) {
 		for (Map.Entry<String, StringTypeSource> entry : table.entrySet()) {
-			if (entry.getValue().getValue().equals(val)) {
+			if (entry.getValue().getValue() == val) {
 				return entry.getKey();
 			}
 		}
@@ -52,6 +52,7 @@ public class StringTypeSource {
 		this.label = label;
 		this.pre = pre;
 		table.put(uuid, this);
+		System.out.println("New Source: " + value);
 	}
 
 	public String getUuid() {

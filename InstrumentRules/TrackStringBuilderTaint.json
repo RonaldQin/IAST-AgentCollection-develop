@@ -1,21 +1,21 @@
 [
 	{
-		"uuid" : "12074610-18E9-4EA3-8F37-F1AA605FBA53",
+		"uuid" : "7796FC9E-88BB-4E05-B125-4218690EAAB9",
 		"className" : "java.lang.StringBuilder",
-		"dealClass" : "com.engine.rule.TrackStringBuilderSourceRule",
+		"dealClass" : "com.engine.rule.StringBuilderTaintRule",
 		"instrumentations" : [
 			{
 				"methodName" : "append",
 				"params" : ["java.lang.String"],
-				"insertPosition" : "after",
-				"insertLogic" : "insert_TrackSourceInAppend",
+				"insertPosition" : "before",
+				"insertLogic" : "insert_GetAppendThisValue",
 				"methodType" : 1
 			},
 			{
 				"methodName" : "append",
 				"params" : ["java.lang.String"],
-				"insertPosition" : "before",
-				"insertLogic" : "insert_StoreThisValue",
+				"insertPosition" : "after",
+				"insertLogic" : "insert_AppendTransmitTaint",
 				"methodType" : 1
 			}
 		]
