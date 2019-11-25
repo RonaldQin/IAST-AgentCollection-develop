@@ -1,0 +1,44 @@
+[
+	{
+		"uuid" : "AA878347-60F3-4524-BA5D-D3F08468616A",
+		"className" : "java.io.File",
+		"dealClass" : "com.engine.rule.FileRule",
+		"instrumentations" : [
+			{
+				"methodName" : "list",
+				"params" : [],
+				"insertPosition" : "after",
+				"insertLogic" : "insert_GetFileListPath",
+				"methodType" : 1
+			}
+		]
+	},
+	{
+		"uuid" : "DDED1474-C82D-4567-A34C-0D6757BC5E24",
+		"className" : "java.io.FileInputStream",
+		"dealClass" : "com.engine.rule.FileRule",
+		"instrumentations" : [
+			{
+				"methodName" : "FileInputStream",
+				"params" : ["java.lang.String"],
+				"insertPosition" : "before",
+				"insertLogic" : "insert_GetReadFilePath",
+				"methodType" : 0
+			}
+		]
+	},
+	{
+		"uuid" : "601C1E80-30C7-4D75-9EBF-7F974D5DEB24",
+		"className" : "java.io.FileOutputStream",
+		"dealClass" : "com.engine.rule.FileRule",
+		"instrumentations" : [
+			{
+				"methodName" : "FileOutputStream",
+				"params" : ["java.lang.String"],
+				"insertPosition" : "before",
+				"insertLogic" : "insert_GetFileOutputStreamFilePath",
+				"methodType" : 0
+			}
+		]
+	}
+]

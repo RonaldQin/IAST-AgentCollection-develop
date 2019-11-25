@@ -20,4 +20,8 @@ public class HttpRequestHelperStack {
 	public static void clear() {
 		stack.clear();
 	}
+
+	public static boolean isEmpty() {
+		return stack.isEmpty();
+	}
 }

@@ -1,0 +1,30 @@
+[
+	{
+		"uuid" : "EF3016C8-C1F5-4682-88D6-5A4A772DFCB1",
+		"className" : "java.lang.Runtime",
+		"dealClass" : "com.engine.rule.CommandExecRule",
+		"instrumentations" : [
+			{
+				"methodName" : "exec",
+				"params" : ["java.lang.String"],
+				"insertPosition" : "before",
+				"insertLogic" : "insert_GetExecCommand",
+				"methodType" : 1
+			}
+		]
+	},
+	{
+		"uuid" : "3874750C-7C3E-4FBF-838B-59B8569CD6FF",
+		"className" : "java.lang.ProcessBuilder",
+		"dealClass" : "com.engine.rule.CommandExecRule",
+		"instrumentations" : [
+			{
+				"methodName" : "ProcessBuilder",
+				"params" : ["java.lang.String[]"],
+				"insertPosition" : "before",
+				"insertLogic" : "insert_GetExecCommands",
+				"methodType" : 0
+			}
+		]
+	}
+]

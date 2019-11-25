@@ -23,7 +23,7 @@ public class TrackParameterSourceRule extends AbstractInstrumentRule {
 		return instance;
 	}
 
-	/* 标记HttpRequest.getParameter("")的返回值是Source */
+	/* 标记 HttpRequest.getParameter("xxx") 的返回值是Source */
 	public String insert_LabelSource() {
 		pool.importPackage(Source.class.getCanonicalName());
 		pool.importPackage(TransmitStackTrace.class.getCanonicalName());
@@ -33,13 +33,14 @@ public class TrackParameterSourceRule extends AbstractInstrumentRule {
 			dealMethod.addLocalVariable("_$methodName", pool.get(String.class.getCanonicalName()));
 			dealMethod.addLocalVariable("_$input", pool.get(Object.class.getCanonicalName()));
 			dealMethod.addLocalVariable("_$output", pool.get(Object.class.getCanonicalName()));
-
+			code_buffer.append("if ($_ != null) {");
 			code_buffer.append("_$methodName = \"" + dealClass.getName() + "." + dealMethod.getName() + "\";");
 			code_buffer.append("_$input = $1; _$output = $_;");
 			code_buffer.append("_$source = new Source($_, " + Source.class.getCanonicalName()
 					+ ".LABEL_SOURCE, $_.getClass().getCanonicalName(), null);");
-			code_buffer.append(
-					"_$source.setTransmitStackTrace(new TransmitStackTrace(_$methodName, _$input, _$output));");
+			code_buffer
+					.append("_$source.setTransmitStackTrace(new TransmitStackTrace(_$methodName, _$input, _$output));");
+			code_buffer.append("}");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
