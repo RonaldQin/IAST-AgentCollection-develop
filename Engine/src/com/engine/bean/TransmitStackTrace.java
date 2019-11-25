@@ -1,5 +1,7 @@
 package com.engine.bean;
 
+import java.util.Arrays;
+
 public class TransmitStackTrace {
 
 	private String method;
@@ -21,7 +23,7 @@ public class TransmitStackTrace {
 	}
 
 	public Object getInput() {
-		return input;
+		return input instanceof Object[] ? Arrays.deepToString((Object[]) input) : input;
 	}
 
 	public void setInput(Object input) {

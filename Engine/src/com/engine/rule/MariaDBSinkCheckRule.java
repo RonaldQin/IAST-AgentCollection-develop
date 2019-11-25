@@ -32,7 +32,7 @@ public class MariaDBSinkCheckRule extends AbstractInstrumentRule {
 			code_buffer.append("_$taintedKey = Source.isTainted($1);");
 			code_buffer.append("if (_$taintedKey != null) {");
 			code_buffer.append(
-					"System.out.println(\"Trigger Sink: org.mariadb.jdbc.MariaDbStatement.executeQuery with Source: \" + $1);");
+					"System.out.println(\"Trigger Sink: org.mariadb.jdbc.MariaDbStatement.executeQuery(sql) with Source: \" + $1);");
 			code_buffer.append("Source.dumpStackTrace(_$taintedKey);");
 			code_buffer.append("}");
 			code_buffer.append("StringBuilderTaintRule.switchOn(); }");

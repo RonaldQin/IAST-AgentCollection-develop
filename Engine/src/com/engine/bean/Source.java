@@ -33,17 +33,15 @@ public class Source {
 		Source source = table.get(sourceKey);
 		if (source == null)
 			return;
-		System.out.println("   " + 
-				source.getTransmitStackTrace().getMethod() + ", input: " + source.getTransmitStackTrace().getInput()
-						+ ", output: " + source.getTransmitStackTrace().getOutput());
+		System.out.println("   Transmit from method: " + 
+				source.getTransmitStackTrace().getMethod() + "; Input: " + source.getTransmitStackTrace().getInput()
+				+ "; Output: " + source.getTransmitStackTrace().getOutput());
 		String[] pres = source.getPre();
-		if (pres != null && pres.length > 0) {
-//			for (String pre : pres) {
-			dumpStackTrace(pres[0]);
-//			}
-		} else {
+		if (pres == null || pres.length == 0) {
 			return;
 		}
+		for (String pre : pres)
+			dumpStackTrace(pre);
 	}
 
 	public Source(Object value, String label, String type, String[] pre) {
@@ -53,7 +51,6 @@ public class Source {
 		this.type = type;
 		this.pre = pre;
 		table.put(uuid, this);
-		System.out.println(value);
 	}
 
 	public String getUuid() {
@@ -102,7 +99,6 @@ public class Source {
 
 	public void setTransmitStackTrace(TransmitStackTrace transmitStackTrace) {
 		this.transmitStackTrace = transmitStackTrace;
-//		System.out.println(this.toString());
 	}
 
 	@Override

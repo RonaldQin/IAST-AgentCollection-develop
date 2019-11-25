@@ -8,7 +8,7 @@
 				"methodName" : "exec",
 				"params" : ["java.lang.String"],
 				"insertPosition" : "before",
-				"insertLogic" : "insert_GetExecCommand",
+				"insertLogic" : "insert_ExecSink",
 				"methodType" : 1
 			}
 		]
@@ -22,8 +22,15 @@
 				"methodName" : "ProcessBuilder",
 				"params" : ["java.lang.String[]"],
 				"insertPosition" : "before",
-				"insertLogic" : "insert_GetExecCommands",
+				"insertLogic" : "insert_NewProcessBuilder",
 				"methodType" : 0
+			},
+			{
+				"methodName" : "start",
+				"params" : [],
+				"insertPosition" : "before",
+				"insertLogic" : "insert_SinkStart",
+				"methodType" : 1
 			}
 		]
 	}
