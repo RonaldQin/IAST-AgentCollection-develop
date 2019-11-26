@@ -1,0 +1,16 @@
+[
+	{
+		"uuid" : "17EE36A5-F98C-422E-BBA7-8C57D20EB8B6",
+		"className" : "org.apache.taglibs.standard.tag.common.core.ImportSupport",
+		"dealClass" : "com.engine.rule.JSTLRule",
+		"instrumentations" : [
+			{
+				"methodName" : "targetUrl",
+				"params" : [],
+				"insertPosition" : "after",
+				"insertLogic" : "insert_GetImportURL",
+				"methodType" : 1
+			}
+		]
+	}
+]

@@ -1,0 +1,37 @@
+[
+	{
+		"uuid" : "7B405942-5998-486D-9C8A-C15061FA52B1",
+		"className" : "org.apache.log4j.Category",
+		"dealClass" : "com.engine.rule.Log4JRule",
+		"instrumentations" : [
+			{
+				"methodName" : "info",
+				"params" : ["java.lang.Object"],
+				"insertPosition" : "before",
+				"insertLogic" : "insert_GetLogMessage",
+				"methodType" : 1
+			},
+			{
+				"methodName" : "warn",
+				"params" : ["java.lang.Object"],
+				"insertPosition" : "before",
+				"insertLogic" : "insert_GetLogMessage",
+				"methodType" : 1
+			},
+			{
+				"methodName" : "debug",
+				"params" : ["java.lang.Object"],
+				"insertPosition" : "before",
+				"insertLogic" : "insert_GetLogMessage",
+				"methodType" : 1
+			},
+			{
+				"methodName" : "fatal",
+				"params" : ["java.lang.Object"],
+				"insertPosition" : "before",
+				"insertLogic" : "insert_GetLogMessage",
+				"methodType" : 1
+			}
+		]
+	}
+]

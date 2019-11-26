@@ -58,7 +58,7 @@ public class FileRule extends AbstractInstrumentRule {
 	public String readFilePath = null;
 
 	/* 读文件 */
-	public String insert_GetReadFilePath() {
+	public String insert_GetFileInputStreamPath() {
 		pool.importPackage(FileRule.class.getCanonicalName());
 		StringBuffer code_buffer = new StringBuffer("");
 		try {
@@ -86,7 +86,7 @@ public class FileRule extends AbstractInstrumentRule {
 	}
 
 	/* 写文件 */
-	public String insert_GetFileOutputStreamFilePath() {
+	public String insert_GetFileOutputStreamPath() {
 		StringBuffer code_buffer = new StringBuffer("");
 		code_buffer.append("System.out.println(\"写文件地址： \" + $1);");
 		return code_buffer.toString();

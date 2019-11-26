@@ -1,0 +1,16 @@
+[
+	{
+		"uuid" : "590E407A-0E75-4642-B9B6-3EDE75D0A067",
+		"className" : "org.apache.commons.httpclient.methods.GetMethod",
+		"dealClass" : "com.engine.rule.HttpClientRule",
+		"instrumentations" : [
+			{
+				"methodName" : "GetMethod",
+				"params" : ["java.lang.String"],
+				"insertPosition" : "before",
+				"insertLogic" : "insert_CheckSinkGetMethod",
+				"methodType" : 0
+			}
+		]
+	}
+]

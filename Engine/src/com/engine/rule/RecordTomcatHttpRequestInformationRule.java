@@ -79,7 +79,7 @@ public class RecordTomcatHttpRequestInformationRule extends AbstractInstrumentRu
 
 			code_buffer.append(
 					"if (content_type != null && content_type.startsWith(\"multipart/form-data\") && httpRequestInfo.getMethod().equalsIgnoreCase(\"post\")) {");
-
+			// 流的拷贝
 			code_buffer.append("try {");
 			code_buffer.append("	outputStream = new ByteArrayOutputStream();");
 			code_buffer.append("	IOUtils.copy($2.getInputStream(), outputStream);");
