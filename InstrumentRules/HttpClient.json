@@ -8,8 +8,22 @@
 				"methodName" : "GetMethod",
 				"params" : ["java.lang.String"],
 				"insertPosition" : "before",
-				"insertLogic" : "insert_CheckSinkGetMethod",
+				"insertLogic" : "insert_taintGetMethod",
 				"methodType" : 0
+			}
+		]
+	},
+	{
+		"uuid" : "AD2478DA-CF1A-4749-8B48-12C0032BF403",
+		"className" : "org.apache.commons.httpclient.HttpClient",
+		"dealClass" : "com.engine.rule.HttpClientRule",
+		"instrumentations" : [
+			{
+				"methodName" : "executeMethod",
+				"params" : ["org.apache.commons.httpclient.HttpMethod"],
+				"insertPosition" : "before",
+				"insertLogic" : "insert_SinkExecuteMethod",
+				"methodType" : 1
 			}
 		]
 	}
